@@ -44,8 +44,11 @@ const ProtectedLayout = () => {
   }, []);
 
   useEffect(() => {
-    if (spaceId) {
-      handleGetSpace();
+    const token = localStorage.getItem("token");
+    if (token) {
+      if (spaceId) {
+        handleGetSpace();
+      }
     }
   }, [spaceId]);
 
