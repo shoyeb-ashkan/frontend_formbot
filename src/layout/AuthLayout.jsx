@@ -2,13 +2,16 @@ import "./styles/authLayout.css";
 import arrow from "../assets/svgs/arrow_back.svg";
 import { Link, Navigate } from "react-router-dom";
 import triangle from "../assets/svgs/triangle-cheese.svg";
+import { useEffect } from "react";
 
 const AuthLayout = ({ children }) => {
-  const isAuthenticated = localStorage.getItem("token");
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("token");
 
-  if (!!isAuthenticated) {
-    return <Navigate to={`/space`} replace />;
-  }
+    if (!!isAuthenticated) {
+      return <Navigate to={`/space`} replace />;
+    }
+  }, []);
 
   return (
     <div className="auth-layout">

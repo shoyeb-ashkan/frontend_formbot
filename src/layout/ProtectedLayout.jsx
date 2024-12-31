@@ -28,14 +28,14 @@ const ProtectedLayout = () => {
       dispatch(getUserDetails())
         .unwrap()
         .then((data) => {
-          // if (
-          //   location.pathname === "/" ||
-          //   location.pathname === "/login" ||
-          //   location.pathname === "/register" ||
-          //   location.pathname === "/space"
-          // ) {
+          if (
+            location.pathname === "/" ||
+            location.pathname === "/login" ||
+            location.pathname === "/register" ||
+            location.pathname === "/space"
+          ) {
             navigate(data.data.spaces[0].space._id.toString());
-          // }
+          }
         })
         .catch((error) => {
           handleLogout();
