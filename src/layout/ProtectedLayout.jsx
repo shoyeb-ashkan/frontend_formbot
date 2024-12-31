@@ -23,7 +23,6 @@ const ProtectedLayout = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      console.log("token");
       handleLogout();
     } else {
       dispatch(getUserDetails())
@@ -37,6 +36,7 @@ const ProtectedLayout = () => {
           ) {
             navigate(data.data.spaces[0].space._id.toString());
           }
+          console.log("redirect");
         })
         .catch((error) => {
           console.log("error", error);

@@ -92,7 +92,7 @@ const FormUser = () => {
       }
     }
     if (index === firstNonBubbleIndex && !form[index]?.value) {
-      const res = await updateFormResponse(formId, {
+      await updateFormResponse(formId, {
         started: true,
       });
     }
@@ -113,8 +113,13 @@ const FormUser = () => {
   const handleSubmitForm = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const responseData = form.map((item) => ({
+      id: item.id,
+      value: item.value, // Only send the value if it's filled in
+    }));
+
     const res = await updateFormResponse(formId, {
-      response: form,
+      response: responseData,
     });
 
     if (res) {

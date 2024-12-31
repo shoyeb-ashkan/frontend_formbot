@@ -62,21 +62,18 @@ const Space = ({ children }) => {
               </button>
               {isOpen && (
                 <>
-                  {user.spaces
-                    .filter(({ space }) => {
-                      return space._id.toString() !== spaceId;
-                    })
-                    .map(({ space }) => {
-                      return (
-                        <Link
-                          className="no-select space__header__button__title"
-                          key={space._id}
-                          to={`/space/${space._id}`}
-                        >
-                          <p>{space.name}</p>
-                        </Link>
-                      );
-                    })}
+                  {user.spaces.map(({ space }) => {
+                    if (space._id.toString() === spaceId) return;
+                    return (
+                      <Link
+                        className="no-select space__header__button__title"
+                        key={space._id}
+                        to={`/space/${space._id}`}
+                      >
+                        <p>{space.name}</p>
+                      </Link>
+                    );
+                  })}
                   <Link to="/space/setting">Setting</Link>
                   <button
                     className="space__header__button space__header__logout"

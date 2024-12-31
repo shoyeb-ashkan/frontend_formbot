@@ -81,14 +81,14 @@ export const generateShareLink = async (spaceId, accessType) => {
   }
 };
 
-export const shareSpace = async ({ spaceId, accessType, email }, token) => {
+export const shareSpace = async ({ spaceId, access, email }, token) => {
   try {
     const url = token
       ? `${backendUrl}/api/v1/user/sharespace?token=${token}`
       : `${backendUrl}/api/v1/user/sharespace`;
     const response = await axios.put(
       url,
-      { spaceId, accessType, email },
+      { spaceId, access, email },
       {
         headers: {
           "Content-Type": "application/json",

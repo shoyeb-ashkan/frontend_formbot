@@ -17,8 +17,12 @@ const SpaceForm = ({
     <div className="space__form__container">
       <div className="space__form__button__container ">
         <button
+          disabled={!canEdit}
           onClick={() => handleAddFormOrFolder("Form")}
-          className="space__form__button no-select space__form__create"
+          className={
+            "space__form__button no-select space__form__create " +
+            (canEdit ? "" : "disabled")
+          }
         >
           <p>+</p>
           Create a typebot

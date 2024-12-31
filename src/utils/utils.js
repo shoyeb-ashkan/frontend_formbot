@@ -8,8 +8,8 @@ export const useHandleLogout = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
-    navigate("/");
     window.location.reload();
+    navigate("/");
   };
 
   return handleLogout;

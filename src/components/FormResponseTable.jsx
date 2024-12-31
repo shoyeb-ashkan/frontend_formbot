@@ -2,18 +2,18 @@ import "./styles/formResponseTable.css";
 import date from "../assets/svgs/date.svg";
 
 const FormResponseTable = ({ form }) => {
-
-    const formatDate = (dateString) => {
-        const options = {
-          month: "short", // Abbreviated month name
-          day: "numeric", // Numeric day
-          hour: "numeric", // Hour in 12-hour format
-          minute: "numeric", // Minutes
-          hour12: true, // Use 12-hour format
-        };
-        const date = new Date(dateString);
-        return new Intl.DateTimeFormat("en-US", options).format(date);
-      };
+  const formatDate = (dateString) => {
+    const options = {
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    };
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("en-US", options).format(date);
+  };
+  console.log(form);
 
   return (
     <table border="1" style={{ width: "100%", borderCollapse: "collapse" }}>

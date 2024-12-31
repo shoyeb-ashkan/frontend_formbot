@@ -26,23 +26,32 @@ const EditForm = ({
   setFormData,
 }) => {
   // Helper to create a new field
-  const createNewField = (type, isBubble) => ({
-    id: Date.now(),
-    type,
-    isBubble,
-    value: "",
-    label: isBubble
-      ? `${type.charAt(0).toUpperCase() + type.slice(1)} ${
-          formData.data.filter(
-            (field) => field.type === type && field.isBubble === isBubble
-          ).length + 1
-        }`
-      : `Input ${type.charAt(0).toUpperCase() + type.slice(1)} ${
-          formData.data.filter(
-            (field) => field.type === type && field.isBubble === isBubble
-          ).length + 1
-        }`,
-  });
+  const createNewField = (type, isBubble) => {
+    // Get the highest number for the given type and isBubble field
+    const maxNumber = Math.max(
+      0, // to avoid NaN if there are no fields yet
+      ...formData.data
+        .filter((field) => field.type === type && field.isBubble === isBubble)
+        .map((field) => {
+          const matches = field.label.match(/(\d+)$/); // Match the number at the end of the label
+          return matches ? parseInt(matches[1]) : 0;
+        })
+    );
+
+    const newLabelNumber = maxNumber > 0 ? maxNumber + 1 : 1; // If no fields, start from 1
+
+    return {
+      id: Date.now(),
+      type,
+      isBubble,
+      value: "",
+      label: isBubble
+        ? `${type.charAt(0).toUpperCase() + type.slice(1)} ${newLabelNumber}`
+        : `Input ${
+            type.charAt(0).toUpperCase() + type.slice(1)
+          } ${newLabelNumber}`,
+    };
+  };
 
   // Handle adding new inputs
   const handleInputClick = (type, isBubble) => {

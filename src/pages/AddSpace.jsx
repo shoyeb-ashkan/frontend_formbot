@@ -1,17 +1,16 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
 import PreLoader from "./../components/PreLoader";
 import toast from "react-hot-toast";
 import { shareSpace } from "../utils/AxiosRequest";
+import { useEffect } from "react";
 
 const AddSpace = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  
+
   const userToken = localStorage.getItem("token");
 
   const handleShareSpace = async () => {
-
     if (!userToken) {
       toast.error("User is not logged in!");
       return navigate("/login");
@@ -28,10 +27,11 @@ const AddSpace = () => {
 
       if (res && res.success) {
         toast.success("Access granted!");
-        return navigate("/");
+        navigate("/");
+        console.log("add space");
       } else {
         toast.error(res?.message || "Failed to access space.");
-        return navigate("/");
+        navigate("/");
       }
     } catch (error) {
       toast.error(
@@ -42,10 +42,10 @@ const AddSpace = () => {
   };
 
   useEffect(() => {
-    handleShareSpace(); 
+    handleShareSpace();
   }, []);
 
-  return <PreLoader />; 
+  return <PreLoader />;
 };
 
 export default AddSpace;

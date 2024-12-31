@@ -41,7 +41,7 @@ const ShareSpace = ({ spaceId, setShowShare, ownerEmail }) => {
     }
 
     setAddEmailLoading(true);
-    const res = await shareSpace({ spaceId, accessType, email });
+    const res = await shareSpace({ spaceId, access: accessType, email });
     setAddEmailLoading(false);
 
     if (res && res?.success) {
