@@ -1,0 +1,44 @@
+.register__login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+  margin-bottom: 70px;
+  color: white;
+  max-width: 900px;
+}
+
+.login__google {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 300px;
+  height: 40px;
+  border-radius: 12px;
+  padding: 10px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  background-color: #1a5fff;
+  cursor: pointer;
+}
+
+.login__google:hover {
+  background-color: #0e3f9f;
+}
+
+.login__register {
+  margin-top: 25px;
+}
+
+.login__register > a {
+  color: #1a5fff;
+}
+
+.login__register > a:hover {
+  text-decoration: underline;
+}

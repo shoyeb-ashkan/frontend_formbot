@@ -1,0 +1,71 @@
+.space__form__container {
+  margin-top: 25px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.space__form__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 225px;
+  height: 270px;
+  min-width: 40px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  margin: 0px 20px 10px 0px;
+  background-color: var(--button-bg-color);
+  color: var(--text-color);
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.space__form__button:hover {
+  background-color: var(--hover-color);
+}
+.space__form__create {
+  background-color: #1a5fff !important;
+  color: white !important;
+}
+.space__form__button p {
+  font-size: 25px;
+}
+
+.space__form__delete__button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.space__form__button__container {
+  position: relative;
+  max-width: fit-content;
+  margin-top: 10px;
+}
+
+.space__form__delete__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.space__form__delete__button:hover {
+  background-color: var(--hover-color);
+  border-radius: 100%;
+}

@@ -1,0 +1,57 @@
+/* Base styling for the table */
+table {
+    width: 100%;
+    margin: 20px 0;
+    font-size: 14px;
+    background-color: var(--bg-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    
+  }
+  
+  /* Table headers */
+  thead th {
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid var(--border-color);
+    border-bottom: 2px solid var(--border-color);
+    position: sticky;
+    background-color: var(--bg-color);
+    top: 0;
+    z-index: 1;
+    white-space: nowrap;
+  }
+  
+  
+  tbody tr:nth-child(odd) {
+    background-color: var(--bg-secondary-color);
+  }
+  
+  
+  /* Table cells */
+  th,
+  td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  /* Serial number column */
+  td:first-child,
+  th:first-child {
+    text-align: center;
+    width: 50px;
+  }
+  
+  /* Icons inside headers */
+  thead th img {
+    height: 12px;
+    width: 12px;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+  
+ 
+
+  

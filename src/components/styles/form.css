@@ -1,0 +1,109 @@
+.main__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  gap: 5px;
+  width: 100%;
+  color: white;
+  max-width: 900px;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+.input__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.input__container label {
+  padding-left: 5px;
+  text-transform: capitalize;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+}
+
+.input__container input {
+  width: 300px;
+  height: 40px;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  padding: 10px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  background-color: transparent;
+}
+
+.input__container input::placeholder {
+  color: #636364;
+}
+
+.input__container input:focus {
+  outline: none;
+  border: 1px solid #ff0fff;
+}
+.input__icon__passowrd img {
+  height: 25px;
+}
+.input__icon__passowrd {
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 15px;
+  position: absolute;
+  height: 100%;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main__form button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 40px;
+  border-radius: 12px;
+  padding: 10px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  background-color: #1a5fff;
+  cursor: pointer;
+}
+
+.main__form button:hover {
+  background-color: #0e3f9f;
+}
+
+.error__message {
+  color: red;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  margin-top: 5px;
+  max-width: 300px;
+  min-height: 20px;
+}
+
+.input__error input {
+  border: 1px solid red;
+  color: red;
+}
+
+.input__error label {
+  color: red;
+}

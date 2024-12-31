@@ -1,0 +1,49 @@
+.auth-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #121212;
+  color: white;
+  min-width: 800px;
+  overflow-x: auto;
+  position: relative;
+}
+
+.auth-layout__arrow {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  height: 30px;
+  width: 30px;
+}
+
+.half-circle {
+  position: absolute;
+  bottom: 0;
+  right: 180px;
+  width: 150px;
+  height: 75px;
+  background-color: #ffbf7d;
+  border-radius: 75px 75px 0 0;
+}
+
+.half-circle-vertical {
+  position: absolute;
+  right: 0;
+  top: 100px;
+  width: 75px;
+  height: 150px;
+  background-color: #ff9595;
+  border-radius: 75px 0 0 75px;
+}
+
+.triangle-container__triangle {
+  position: absolute;
+  height: 180px;
+  top: 30%;
+  left: 15px;
+}

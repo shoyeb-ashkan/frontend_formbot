@@ -1,0 +1,146 @@
+.editform__container {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+}
+
+.editform__sidebar {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 35px 20px;
+  min-height: calc(100vh - 70px);
+}
+
+.editform__main {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.editform__header {
+  width: 320px;
+  height: 50px;
+  background-color: var(--bg-color);
+  display: flex;
+  font-size: 20px;
+  line-height: 21px;
+  font-weight: 600;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 20px;
+  gap: 15px;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.editform__sidebar__inputs {
+  margin-top: 20px;
+}
+
+.editform__sidebar__bubbles p,
+.editform__sidebar__inputs p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: left;
+}
+
+.editform__sidebar__buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.editform__sidebar__buttons button {
+  background-color: var(--bg-secondary-color);
+  text-transform: capitalize;
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+  width: 149px;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  gap: 10px;
+}
+
+.editform__sidebar__buttons button:hover {
+  background-color: var(--hover-color);
+}
+
+.editform__field__container {
+  width: 320px;
+  position: relative;
+}
+
+.editform__field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--bg-color);
+  border-radius: 6px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.editform__field__delete {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  width: 25px;
+  height: 25px;
+}
+
+.editform__field__delete:hover {
+  background-color: var(--hover-color);
+}
+
+.editform__field input {
+  width: 100%;
+  height: 25px;
+  border: none;
+  background-color: var(--bg-color);
+  border-radius: 6px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.editform__field input:focus {
+  outline: none;
+}
+
+.field-error input {
+  border: 1px solid #F55050 !important;
+}
+
+.editform__field__error {
+  color: #522224 !important;
+  font-size: 12px;
+  height: 12px;
+  font-weight: 500;
+}
