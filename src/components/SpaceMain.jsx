@@ -5,7 +5,7 @@ import { useTheme } from "../utils/ThemeContext";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import SpaceForm from "./SpaceForm";
-import CreateFormOrFolder from "./CreateFormorFolder";
+import CreateFormOrFolder from "../components/CreateFormOrFolder";
 import { useEffect, useState } from "react";
 import {
   backToDefault,
