@@ -13,7 +13,7 @@ import ShareSpace from "../components/ShareSpace";
 
 const Space = ({ children }) => {
   const { theme } = useTheme();
-  const { space, error } = useSelector((state) => state.space);
+  const { space} = useSelector((state) => state.space);
   const { user } = useSelector((state) => state.user);
   const { spaceId } = useParams();
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +40,7 @@ const Space = ({ children }) => {
 
   const canShare = space?.owner.toString() === user?._id.toString();
 
-  if (!space && !error) return <PreLoader />;
+  if (!space) return <PreLoader />;
 
   return (
     <div className="space">

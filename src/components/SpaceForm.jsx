@@ -6,6 +6,7 @@ const SpaceForm = ({
   handleAddFormOrFolder,
   forms,
   canEdit,
+  loading,
 }) => {
   const navigate = useNavigate();
   const { spaceId } = useParams();
@@ -17,11 +18,11 @@ const SpaceForm = ({
     <div className="space__form__container">
       <div className="space__form__button__container ">
         <button
-          disabled={!canEdit}
+          disabled={!canEdit || loading}
           onClick={() => handleAddFormOrFolder("Form")}
           className={
             "space__form__button no-select space__form__create " +
-            (canEdit ? "" : "disabled")
+            (canEdit || !loading ? "" : "disabled")
           }
         >
           <p>+</p>
@@ -38,15 +39,17 @@ const SpaceForm = ({
               e.preventDefault();
               handleNavigate(form);
             }}
-            className="space__form__button"
+            disabled={!canEdit || loading}
+            className={"space__form__button " + (!loading ? "" : "disabled")}
           >
             {form.name}
           </button>
           <button
-            disabled={!canEdit}
+            disabled={!canEdit || loading}
             onClick={() => handleDeleteFormOrFolder("Form", form._id)}
             className={
-              "space__form__delete__button " + (canEdit ? "" : "disabled")
+              "space__form__delete__button " +
+              (canEdit || !loading ? "" : "disabled")
             }
           >
             <img src={deleteIcon} alt="delete" />

@@ -19,7 +19,7 @@ const SpaceMain = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { theme } = useTheme();
-  const { space } = useSelector((state) => state.space);
+  const { space, loading } = useSelector((state) => state.space);
   const { user } = useSelector((state) => state.user);
   const { folderId, spaceId } = useParams();
 
@@ -48,7 +48,7 @@ const SpaceMain = () => {
       navigate("/404"); // Use absolute path
     }
   }, [folderId]);
-  
+
   const handleSetAddFormOrFolder = (type) => {
     setMode(type);
     setShowCreateFormOrFolder(true);
@@ -107,10 +107,10 @@ const SpaceMain = () => {
       <div className="space__folder__container">
         <button
           onClick={() => handleSetAddFormOrFolder("Folder")}
-          disabled={!activeSpace?.canEdit}
+          disabled={!activeSpace?.canEdit || loading}
           className={
             "main__folder__button no-select " +
-            (activeSpace?.canEdit ? "" : "disabled")
+            (activeSpace?.canEdit || !loading ? "" : "disabled")
           }
         >
           <img
@@ -130,9 +130,15 @@ const SpaceMain = () => {
               <Link
                 className={
                   "no-select main__folder__link " +
-                  (folder._id === folderId ? "main__folder__link__active" : "")
+                  (folder._id === folderId
+                    ? "main__folder__link__active "
+                    : "") +
+                  (loading ? "disabled" : "")
                 }
-                to={`/space/${spaceId}/folder/${folder._id}`}
+                to={loading ? "#" : `/space/${spaceId}/folder/${folder._id}`}
+                onClick={(e) => {
+                  if (loading) e.preventDefault();
+                }}
               >
                 <span>{folder.name}</span>
               </Link>
@@ -140,10 +146,10 @@ const SpaceMain = () => {
                 onClick={() =>
                   handleSetDeleteFormOrFolder("Folder", folder._id)
                 }
-                disabled={!activeSpace?.canEdit}
+                disabled={!activeSpace?.canEdit || loading}
                 className={
                   "main__folder__delete__button " +
-                  (activeSpace?.canEdit ? "" : "disabled")
+                  (activeSpace?.canEdit || !loading ? "" : "disabled")
                 }
               >
                 <img src={deleteIcon} alt="delete" />
@@ -152,6 +158,7 @@ const SpaceMain = () => {
           ))}
       </div>
       <SpaceForm
+        loading={loading}
         handleAddFormOrFolder={handleSetAddFormOrFolder}
         handleDeleteFormOrFolder={handleSetDeleteFormOrFolder}
         forms={forms}
