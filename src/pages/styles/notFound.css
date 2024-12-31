@@ -1,0 +1,58 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  min-height: 100vh;
+  text-align: center;
+  background: linear-gradient(120deg,var(--bg-secondary-color), var(--hover-color));
+}
+
+.not-found__content {
+  max-width: 600px;
+  padding: 2rem;
+}
+
+.not-found__title {
+  font-size: 8rem;
+  font-weight: bold;
+  color: #ff4c29;
+  margin: 0;
+}
+
+.not-found__text {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  color: #737373;
+}
+
+.not-found__emoji {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+.not-found__funny {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  color: #ff9a3d;
+}
+
+.not-found__button {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #ff4c29;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.not-found__button:hover {
+  background-color: #ff7f50;
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+}

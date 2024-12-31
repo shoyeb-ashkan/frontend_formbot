@@ -6,15 +6,11 @@ import { Navigate } from "react-router";
 import { useEffect } from "react";
 
 const Home = () => {
-  // const isAuthenticated = localStorage.getItem("token");
+  const isAuthenticated = localStorage.getItem("token");
 
-  useEffect(() => {
-    const isAuthenticated = localStorage.getItem("token");
-
-    if (!!isAuthenticated) {
-      return <Navigate to={`/space`} replace />;
-    }
-  }, []);
+  if (!!isAuthenticated) {
+    return <Navigate to={`/space`} replace />;
+  }
   return (
     <div className="home">
       <Header />

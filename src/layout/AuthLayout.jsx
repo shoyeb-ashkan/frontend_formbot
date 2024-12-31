@@ -5,13 +5,11 @@ import triangle from "../assets/svgs/triangle-cheese.svg";
 import { useEffect } from "react";
 
 const AuthLayout = ({ children }) => {
-  useEffect(() => {
-    const isAuthenticated = localStorage.getItem("token");
+  const isAuthenticated = localStorage.getItem("token");
 
-    if (!!isAuthenticated) {
-      return <Navigate to={`/space`} replace />;
-    }
-  }, []);
+  if (!!isAuthenticated) {
+    return <Navigate to={`/space`} replace />;
+  }
 
   return (
     <div className="auth-layout">
