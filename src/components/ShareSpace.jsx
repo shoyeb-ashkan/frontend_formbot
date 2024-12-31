@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../components/styles/sharespace.css";
+import "./styles/shareSpace.css";
 import Loading from "./Loading";
 import { generateShareLink, shareSpace } from "../utils/AxiosRequest";
 import toast from "react-hot-toast";
