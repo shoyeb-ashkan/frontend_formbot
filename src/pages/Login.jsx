@@ -1,7 +1,7 @@
 import "./styles/login.css";
 import { useEffect, useState } from "react";
 import Form from "../components/Form";
-import google_icon from "../assets/svgs/google_icon.svg";
+import googleIcon from "../assets/svgs/googleIcon.svg";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -140,7 +140,7 @@ const Login = () => {
       <p>OR</p>
 
       <a className="login__google" href="#" onClick={(e) => e.preventDefault()}>
-        <img src={google_icon} alt="google" />
+        <img src={googleIcon} alt="google" />
         Sign In with Google
       </a>
 

@@ -1,7 +1,7 @@
 import "./styles/register.css";
 import { useEffect, useState } from "react";
 import Form from "../components/Form";
-import google_icon from "../assets/svgs/google_icon.svg";
+import googleIcon from "../assets/svgs/googleIcon.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../features/user/userSlice";
@@ -164,7 +164,7 @@ const Register = () => {
       <p>OR</p>
 
       <a className="login__google" href="#" onClick={(e) => e.preventDefault()}>
-        <img src={google_icon} alt="google" />
+        <img src={googleIcon} alt="google" />
         Sign Up with Google
       </a>
 
