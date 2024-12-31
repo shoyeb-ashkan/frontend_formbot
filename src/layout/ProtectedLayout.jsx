@@ -36,10 +36,8 @@ const ProtectedLayout = () => {
           ) {
             navigate(data.data.spaces[0].space._id.toString());
           }
-          console.log("redirect");
         })
         .catch((error) => {
-          console.log("error", error);
           handleLogout();
         });
     }
