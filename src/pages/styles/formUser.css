@@ -43,15 +43,15 @@
 
 .userForm__bubble__text {
   background-color: var(--hover-color);
-  width: min-content;
+  width: fit-content; 
   font-size: 12px;
   padding: 5px 10px;
   font-weight: 500;
-  max-width: 320px;
+  max-width: 320px; 
   box-sizing: border-box;
   border-radius: 8px;
-  white-space: normal;
-  word-wrap: break-word;
+  white-space: pre-wrap; 
+  word-wrap: normal; 
 }
 
 .userForm__bubble__img {
@@ -176,7 +176,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 8px;
   border-radius: 5px;
   color: var(--text-color);
-  box-shadow: 9984px 0 0 0 var(--text-color), 9995px 0 0 0 var(--text-color), 10007px 0 0 0 var(--text-color);
+  box-shadow: 9984px 0 0 0 var(--text-color), 9995px 0 0 0 var(--text-color),
+    10007px 0 0 0 var(--text-color);
   animation: dot-typing 1.5s infinite linear;
 }
 
@@ -186,16 +187,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
       10007px 0 0 0 var(--text-color);
   }
   16.667% {
-    box-shadow: 9984px -10px 0 0 var(--text-color), 9995px 0 0 0 var(--text-color),
-      10007px 0 0 0 var(--text-color);
+    box-shadow: 9984px -10px 0 0 var(--text-color),
+      9995px 0 0 0 var(--text-color), 10007px 0 0 0 var(--text-color);
   }
   33.333% {
     box-shadow: 9984px 0 0 0 var(--text-color), 9995px 0 0 0 var(--text-color),
       10007px 0 0 0 var(--text-color);
   }
   50% {
-    box-shadow: 9984px 0 0 0 var(--text-color), 9995px -10px 0 0 var(--text-color),
-      10007px 0 0 0 var(--text-color);
+    box-shadow: 9984px 0 0 0 var(--text-color),
+      9995px -10px 0 0 var(--text-color), 10007px 0 0 0 var(--text-color);
   }
   66.667% {
     box-shadow: 9984px 0 0 0 var(--text-color), 9995px 0 0 0 var(--text-color),
