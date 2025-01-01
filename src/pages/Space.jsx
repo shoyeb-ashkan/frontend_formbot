@@ -14,7 +14,7 @@ import ShareSpace from "../components/ShareSpace";
 const Space = ({ children }) => {
   const { theme } = useTheme();
 
-  const { space } = useSelector((state) => state.space);
+  const { space, loading } = useSelector((state) => state.space);
   const { user } = useSelector((state) => state.user);
   const { spaceId } = useParams();
   const handleLogout = useHandleLogout();
@@ -75,8 +75,15 @@ const Space = ({ children }) => {
                     if (space._id.toString() === spaceId) return;
                     return (
                       <Link
-                        className="no-select space__header__button__title"
+                        disabled={loading}
+                        className={
+                          "no-select space__header__button__title " +
+                          (loading ? "disabled" : "")
+                        }
                         key={space._id}
+                        onClick={(e) => {
+                          if (loading) e.preventDefault();
+                        }}
                         to={`/space/${space._id}`}
                       >
                         <p>{space.name}</p>
