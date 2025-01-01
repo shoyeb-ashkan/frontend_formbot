@@ -13,7 +13,6 @@ const FormResponseTable = ({ form }) => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat("en-US", options).format(date);
   };
-  console.log(form);
 
   return (
     <table border="1" style={{ width: "100%", borderCollapse: "collapse" }}>

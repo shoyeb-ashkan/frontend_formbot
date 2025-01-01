@@ -28,7 +28,6 @@ export const getFormData = async (formId) => {
 };
 
 export const updateFormResponse = async (formId, formData) => {
-  console.log(formData);
   try {
     const response = await axios.put(
       `${backendUrl}/api/v1/space/form/${formId}`,
@@ -40,7 +39,6 @@ export const updateFormResponse = async (formId, formData) => {
       }
     );
 
-    console.log(response.data);
     return response?.data;
   } catch (error) {
     let errorMessage = "An unexpected error occurred";
