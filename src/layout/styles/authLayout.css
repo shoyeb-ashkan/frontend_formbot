@@ -6,8 +6,8 @@
   padding: 1rem;
   width: 100%;
   min-height: 100vh;
-  background-color: #121212;
-  color: white;
+  background-color: var(--bg-color);
+  color: var(text-color);
   min-width: 800px;
   overflow-x: auto;
   position: relative;

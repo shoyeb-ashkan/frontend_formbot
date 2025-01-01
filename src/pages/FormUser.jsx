@@ -169,18 +169,13 @@ const FormUser = () => {
                           {item.value}
                         </span>
                       ) : item.type === "image" || item.type === "gif" ? (
-                        <img
-                          className="userForm__bubble__img"
-                          src={item.value}
-                          alt="image"
-                        />
+                        <div className="userForm__bubble__img">
+                          <img src={item.value} alt="image" />
+                        </div>
                       ) : (
-                        <video
-                          className="userForm__bubble__img"
-                          src={item.value}
-                          alt="file"
-                          controls
-                        />
+                        <div className="userForm__bubble__img">
+                          <video src={item.value} alt="file" controls />
+                        </div>
                       )}
                     </div>
                   )}
@@ -238,7 +233,10 @@ const FormUser = () => {
                         className="userForm__input"
                         type={item.type === "phone" ? "tel" : item.type}
                         value={tempValues[index] || ""}
-                        placeholder={"Please enter a " + item.type}
+                        placeholder={
+                          "Please enter a " +
+                          (item.type === "phone" ? "phone number" : item.type)
+                        }
                         min={0}
                         onChange={(e) =>
                           handleInputChange(index, e.target.value, item.type)

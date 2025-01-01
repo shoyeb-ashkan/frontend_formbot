@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <div className="footer__container">
       <div className="footer__content">
-        <div className="footer__logo-container">
+        <div className="footer__logo-container no-select">
           <img src={logo} alt="logo" className="footer__logo" />
           FormBot
         </div>

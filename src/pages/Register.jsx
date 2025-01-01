@@ -1,14 +1,16 @@
-import "./styles/register.css";
+import "./styles/loginRegister.css";
 import { useEffect, useState } from "react";
 import Form from "../components/Form";
 import googleIcon from "../assets/svgs/googleIcon.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser, resetError } from "../features/user/userSlice";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { success, loading, user } = useSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -23,6 +25,7 @@ const Register = () => {
     password: false,
     confirmPassword: false,
   });
+
   const [errorMessage, setErrorMessage] = useState({
     name: { message: "Name should be on atleast 3 characters long!" },
     email: { message: "Valid email is required!" },
@@ -140,8 +143,17 @@ const Register = () => {
   };
 
   useEffect(() => {
+    if (!loading && success) {
+      toast.success("Registration successfull!");
+
+      navigate(`/space/${user.spaces[0].space._id.toString()}`);
+    }
+  }, [loading, success]);
+
+  useEffect(() => {
     dispatch(resetError());
   }, []);
+
   return (
     <div className="register__login-container">
       <Form

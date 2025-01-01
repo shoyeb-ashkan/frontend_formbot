@@ -6,7 +6,7 @@
   padding: 1rem;
   gap: 5px;
   width: 100%;
-  color: white;
+  color: var(--text-color);
   max-width: 900px;
 }
 .form-container {
@@ -35,18 +35,18 @@
 .input__container input {
   width: 300px;
   height: 40px;
-  border: 1px solid #fff;
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 10px;
-  color: #fff;
+  color: var(--text-color);
   font-size: 14px;
   line-height: 21px;
   font-weight: 500;
-  background-color: transparent;
+  background-color: var(--bg-secondary-color);
 }
 
 .input__container input::placeholder {
-  color: #636364;
+  color: var(--hover-color);
 }
 
 .input__container input:focus {

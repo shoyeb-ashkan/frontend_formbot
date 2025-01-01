@@ -1,6 +1,6 @@
 .home {
   box-sizing: border-box;
-  background-color: #121212;
+  background-color:var(--bg-color);
   display: flex;
   flex-direction: column;
   justify-content: center;

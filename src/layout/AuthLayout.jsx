@@ -1,34 +1,27 @@
 import "./styles/authLayout.css";
 import arrow from "../assets/svgs/arrow_back.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import triangle from "../assets/svgs/triangle-cheese.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-hot-toast";
-import { useEffect } from "react";
+import { useTheme } from "../utils/ThemeContext";
 
 const AuthLayout = ({ children }) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const { success, loading, user } = useSelector((state) => state.user);
+  const { theme } = useTheme();
   const isAuthenticated = localStorage.getItem("token");
 
   if (!!isAuthenticated) {
-    return navigate("/space");
+    return <Navigate to="/space" replace />;
   }
-
-  useEffect(() => {
-    if (!loading && success) {
-      toast.success("Authentication successfull!");
-
-      navigate(`/space/${user.spaces[0].space._id.toString()}`);
-    }
-  }, [loading, success]);
 
   return (
     <div className="auth-layout">
       <Link to="/">
-        <img src={arrow} alt="arrow" className="auth-layout__arrow" />
+        <img
+          src={arrow}
+          alt="arrow"
+          className={
+            "auth-layout__arrow " + (theme === "light" ? "inversion" : "")
+          }
+        />
       </Link>
       <div className="auth-layout__content">{children}</div>
 

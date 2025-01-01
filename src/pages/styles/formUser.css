@@ -3,8 +3,8 @@
   background-color: var(--bg-color);
   color: var(--text-color);
   width: 100%;
-  height:  fit-content;;
-  min-height:100vh;
+  height: fit-content;
+  min-height: 100vh;
   padding: 40px;
   box-sizing: border-box;
   min-width: fit-content;
@@ -44,21 +44,28 @@
 
 .userForm__bubble__text {
   background-color: var(--hover-color);
-  width: fit-content; 
+  width: fit-content;
   font-size: 12px;
   padding: 5px 10px;
   font-weight: 500;
-  max-width: 320px; 
+  max-width: 320px;
   box-sizing: border-box;
   border-radius: 8px;
-  white-space: pre-wrap; 
-  word-wrap: normal; 
+  white-space: pre-wrap;
+  word-wrap: normal;
 }
 
 .userForm__bubble__img {
+  background-color: var(--hover-color);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.userForm__bubble__img img,
+video {
+  border-radius: 8px;
   max-width: 320px;
   max-height: 320px;
-  border-radius: 8px;
   object-fit: cover;
 }
 

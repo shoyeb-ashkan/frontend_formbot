@@ -24,7 +24,7 @@ const FormResponseTable = ({ form }) => {
             Submitted At
           </th>
           {form.data.map((label) => {
-            if (label.type === "buttons") return null;
+            if (label.type === "buttons" || label.isBubble) return null;
             return <th key={label.id}>{label.label}</th>;
           })}
         </tr>
@@ -38,7 +38,7 @@ const FormResponseTable = ({ form }) => {
               const matchingResponse = response.response.find(
                 (res) => res.id === label.id
               );
-              if (label.type === "buttons") return null;
+              if (label.type === "buttons" || label.isBubble) return null;
               return (
                 <td key={label.id}>
                   {matchingResponse ? matchingResponse.value : "N/A"}

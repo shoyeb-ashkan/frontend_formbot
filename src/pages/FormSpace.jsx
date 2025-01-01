@@ -1,5 +1,5 @@
 import "./styles/formSpace.css";
-import { Link, NavLink, useLocation, useParams } from "react-router";
+import { Link, NavLink, useLocation, useNavigate, useParams } from "react-router";
 import ToggleTheme from "../components/ToggleTheme";
 import close from "../assets/svgs/close.svg";
 import EditForm from "./EditForm";
@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import { backToDefault, updateForm } from "../features/space/spaceSlice";
 
 const FormSpace = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { formId, spaceId } = useParams();
 
@@ -28,14 +29,19 @@ const FormSpace = () => {
   useEffect(() => {
     if (space) {
       //fetch the formdata for the form
-      const result = getFormData(space.rootFolder, formId);
+      try{
 
-      if (result) {
-        setFormData({
-          name: result?.name || "",
-          data: result?.data ? [...result?.data] : [],
-        });
-        setForm(result);
+        const result = getFormData(space.rootFolder, formId);
+        
+        if (result) {
+          setFormData({
+            name: result?.name || "",
+            data: result?.data ? [...result?.data] : [],
+          });
+          setForm(result);
+        }
+      }catch(error){
+        navigate('/404')
       }
     }
   }, [space]);

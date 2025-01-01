@@ -1,13 +1,16 @@
-import "./styles/login.css";
+import "./styles/loginRegister.css";
 import { useEffect, useState } from "react";
 import Form from "../components/Form";
 import googleIcon from "../assets/svgs/googleIcon.svg";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser, resetError } from "../features/user/userSlice";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { success, loading, user } = useSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -26,6 +29,14 @@ const Login = () => {
         "Password must be at least 8 characters and contain at least one letter and one number!",
     },
   });
+
+  useEffect(() => {
+    if (!loading && success) {
+      toast.success("Authentication successfull!");
+
+      navigate(`/space/${user.spaces[0].space._id.toString()}`);
+    }
+  }, [loading, success]);
 
   const validateField = (fieldName, value) => {
     let isValid = false;
@@ -110,7 +121,7 @@ const Login = () => {
 
     await dispatch(loginUser(formData));
   };
-  
+
   useEffect(() => {
     dispatch(resetError());
   }, []);
