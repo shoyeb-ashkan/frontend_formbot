@@ -6,8 +6,9 @@ import "./styles/formResponse.css";
 const FormResponse = ({ form, loading }) => {
   const canShow = form?.viewed === 0;
   const viewed = form?.viewed || 0;
-  const started = form?.started || 0;
   const completed = form?.responses.length || 0;
+  const started =
+    form?.started == 0 && completed != 0 ? completed : form?.started;
 
   return (
     <div className="formresponse__container">
@@ -34,19 +35,25 @@ const FormResponse = ({ form, loading }) => {
             {form && <FormResponseTable form={form} />}
           </section>
 
-          {form && (
+          {form && form.responses.length > 0 && (
             <div className="formresponse__chart">
               {/* Pie Chart Section */}
               <span className="formresponse__pie">
                 <PieChart
                   data={[
-                    { title: "Started", value: started, color: "#909090" },
+                    {
+                      title: "",
+                      value: started - completed,
+                      color: "#909090",
+                    },
                     { title: "Completed", value: completed, color: "#3B82F6" },
                   ]}
                   lineWidth={20}
                   animate
                   label={({ dataEntry }) =>
-                    `${dataEntry.title}: ${dataEntry.value}`
+                    dataEntry.title
+                      ? `${dataEntry.title}: ${dataEntry.value}`
+                      : ""
                   }
                   labelStyle={{
                     fontSize: "3px",
@@ -58,9 +65,7 @@ const FormResponse = ({ form, loading }) => {
 
               <span className=" formresponse__completion">
                 Completion Rate:{" "}
-                <span>
-                  {Math.floor((completed / (completed + started)) * 100)}%
-                </span>
+                <span>{Math.floor((completed / started) * 100)}%</span>
               </span>
             </div>
           )}

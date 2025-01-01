@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { logoutUser } from "../features/user/userSlice";
+import { backToDefault, setSpaces } from "../features/space/spaceSlice";
 
 export const useHandleLogout = () => {
   const dispatch = useDispatch();
@@ -8,8 +9,10 @@ export const useHandleLogout = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
-    window.location.reload();
+    dispatch(backToDefault());
+    dispatch(setSpaces(null));
     navigate("/");
+    window.location.reload();
   };
 
   return handleLogout;

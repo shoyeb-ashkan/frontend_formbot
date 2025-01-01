@@ -1,5 +1,5 @@
 import "./styles/hero.css";
-import figure from "../assets/svgs/figure.svg";
+import figure from "../assets/images/figure.svg";
 import triangle from "../assets/svgs/triangle.svg";
 import circle from "../assets/svgs/circle.svg";
 import { Link } from "react-router-dom";

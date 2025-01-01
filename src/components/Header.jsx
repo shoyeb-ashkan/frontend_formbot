@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <div className="header__container">
-      <div className="header__logo-container">
+      <div className="header__logo-container no-select">
         <img src={logo} alt="logo" className="header__logo" />
         FormBot
       </div>{" "}

@@ -1,14 +1,29 @@
 import "./styles/authLayout.css";
 import arrow from "../assets/svgs/arrow_back.svg";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import triangle from "../assets/svgs/triangle-cheese.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
+import { useEffect } from "react";
 
 const AuthLayout = ({ children }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { success, loading, user } = useSelector((state) => state.user);
   const isAuthenticated = localStorage.getItem("token");
 
   if (!!isAuthenticated) {
-    return <Navigate to={`/space`} replace />;
+    return navigate("/space");
   }
+
+  useEffect(() => {
+    if (!loading && success) {
+      toast.success("Authentication successfull!");
+
+      navigate(`/space/${user.spaces[0].space._id.toString()}`);
+    }
+  }, [loading, success]);
 
   return (
     <div className="auth-layout">

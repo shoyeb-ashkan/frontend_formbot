@@ -17,6 +17,7 @@ const FormSpace = () => {
   const { pathname } = useLocation();
   const { user } = useSelector((state) => state.user);
   const { space, loading } = useSelector((state) => state.space);
+
   const [formData, setFormData] = useState({
     name: "",
     data: [],
@@ -26,6 +27,7 @@ const FormSpace = () => {
 
   useEffect(() => {
     if (space) {
+      //fetch the formdata for the form
       const result = getFormData(space.rootFolder, formId);
 
       if (result) {
@@ -38,6 +40,7 @@ const FormSpace = () => {
     }
   }, [space]);
 
+  //active space to check the permission of the user
   const activeSpace =
     user?.spaces?.find(({ space }) => space._id.toString() === spaceId) || {};
 
@@ -48,7 +51,7 @@ const FormSpace = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    //prevent unnecessary form submit
     const isFormModified =
       formData.name !== form.name ||
       JSON.stringify(formData.data) !== JSON.stringify(form.data);
@@ -91,6 +94,7 @@ const FormSpace = () => {
       );
       return;
     }
+
     const formUrl = `${window.location.origin}/form/${formId}`;
 
     navigator.clipboard
@@ -99,10 +103,9 @@ const FormSpace = () => {
         toast.success("Copied to clipboard!");
       })
       .catch(() => {
-        toast.error("Failed to copy to clipboard!");
+        toast.error("Failed to copy!");
       });
   };
-
 
   return (
     <div className="formspace__container">

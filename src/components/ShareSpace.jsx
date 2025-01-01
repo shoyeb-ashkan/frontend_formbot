@@ -24,9 +24,11 @@ const ShareSpace = ({ spaceId, setShowShare, ownerEmail }) => {
     };
   }, []);
 
+  // arrow function to share the space using email for single user
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    //field validation for email field
     if (!email) {
       return toast.error("Please enter an email address.");
     }
@@ -52,6 +54,7 @@ const ShareSpace = ({ spaceId, setShowShare, ownerEmail }) => {
     }
   };
 
+  // arrow function to copy the share link
   const handleCopyLink = async (e) => {
     e.preventDefault();
     try {
@@ -63,6 +66,8 @@ const ShareSpace = ({ spaceId, setShowShare, ownerEmail }) => {
         const shareableLink = `${window.location.origin}/space/share?token=${res.data.token}`;
         await navigator.clipboard.writeText(shareableLink);
         toast.success("Link copied to clipboard!");
+
+        // show the toast for 1 hour to inform the user that the link will be active for 1 hour
         setTimeout(() => {
           toast(() => (
             <span>

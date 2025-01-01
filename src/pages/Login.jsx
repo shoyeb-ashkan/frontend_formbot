@@ -3,15 +3,11 @@ import { useEffect, useState } from "react";
 import Form from "../components/Form";
 import googleIcon from "../assets/svgs/googleIcon.svg";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../features/user/userSlice";
-import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { loginUser, resetError } from "../features/user/userSlice";
 
 const Login = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { success, loading, error, user } = useSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -99,7 +95,7 @@ const Login = () => {
     },
   ];
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     let isError = false;
 
@@ -112,20 +108,12 @@ const Login = () => {
     });
     if (isError) return;
 
-    dispatch(loginUser(formData));
+    await dispatch(loginUser(formData));
   };
-
+  
   useEffect(() => {
-    if (success) {
-      toast.success("Authentication successfull!");
-
-      navigate(`/space/${user.spaces[0].space._id.toString()}`);
-      setFormData({
-        email: "",
-        password: "",
-      });
-    }
-  }, [loading, success, error]);
+    dispatch(resetError());
+  }, []);
 
   return (
     <div className="register__login-container">

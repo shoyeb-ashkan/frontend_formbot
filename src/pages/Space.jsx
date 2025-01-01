@@ -13,17 +13,22 @@ import ShareSpace from "../components/ShareSpace";
 
 const Space = ({ children }) => {
   const { theme } = useTheme();
-  const { space} = useSelector((state) => state.space);
+
+  const { space } = useSelector((state) => state.space);
   const { user } = useSelector((state) => state.user);
   const { spaceId } = useParams();
+  const handleLogout = useHandleLogout();
+
   const [isOpen, setIsOpen] = useState(false);
   const [showShare, setShowShare] = useState(false);
-  const handleLogout = useHandleLogout();
+
+  // show and hide the header tray
   const setShow = (e) => {
     e.preventDefault();
     setIsOpen((prev) => !prev);
   };
 
+  // close the header tray when clicking outside
   const handleOutsideClick = (event) => {
     const modalContainer = document.querySelector(".space__header__links");
     if (!modalContainer.contains(event.target)) {
@@ -38,8 +43,10 @@ const Space = ({ children }) => {
     };
   }, []);
 
+  //check the share access of the space (only owner can share the space)
   const canShare = space?.owner.toString() === user?._id.toString();
 
+  // till space load show preloader
   if (!space) return <PreLoader />;
 
   return (
@@ -49,6 +56,7 @@ const Space = ({ children }) => {
         <div className="space__header__container">
           <div className="space__header__title">
             <div className="space__header__links">
+              {/* header button to show the active space title and to open and close the header tray */}
               <button
                 onClick={setShow}
                 className="space__header__button space__header__button__title"
@@ -60,6 +68,7 @@ const Space = ({ children }) => {
                   alt="arrow"
                 />
               </button>
+              {/* header tray  */}
               {isOpen && (
                 <>
                   {user.spaces.map(({ space }) => {
@@ -85,7 +94,9 @@ const Space = ({ children }) => {
               )}
             </div>
           </div>
+          {/* theme toggle modal  */}
           <ToggleTheme />
+          {/* share space button  */}
           <button
             onClick={() => setShowShare(true)}
             disabled={!canShare}
@@ -95,6 +106,8 @@ const Space = ({ children }) => {
           </button>
         </div>
       </div>
+
+      {/* root folder button to go back to root folder */}
       <div className="space__main">
         <Link
           title="root folder"
@@ -109,8 +122,11 @@ const Space = ({ children }) => {
             alt="root folder"
           />
         </Link>
+        {/* render children of space (form or folder)  */}
         <section className="space__main__section">{children}</section>
       </div>
+
+      {/* share space modal to share the space with other users */}
       {showShare && (
         <ShareSpace
           setShowShare={setShowShare}

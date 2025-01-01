@@ -19,6 +19,7 @@ const SpaceMain = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { theme } = useTheme();
+
   const { space, loading } = useSelector((state) => state.space);
   const { user } = useSelector((state) => state.user);
   const { folderId, spaceId } = useParams();
@@ -29,9 +30,11 @@ const SpaceMain = () => {
   const [showDeleteFormOrFolder, setShowDeleteFormOrFolder] = useState(false);
   const [itemId, setItemId] = useState("");
 
+  //active space to check the permission of the user
   const activeSpace =
     user?.spaces?.find(({ space }) => space._id.toString() === spaceId) || {};
 
+  // get the forms of root directory or folder
   const forms = folderId
     ? space.rootFolder.find((folder) => folder._id === folderId)?.children || []
     : space.rootFolder.filter((item) => !item.isFolder);
@@ -39,27 +42,30 @@ const SpaceMain = () => {
   useEffect(() => {
     if (!folderId) return; // Ensure folderId is defined
 
+    // check if the folder exists in the root folder
     const folderExists = space.rootFolder.some(
       (item) => item._id.toString() === folderId.toString()
     );
 
     if (!folderExists) {
-      console.log("Navigating to 404");
       navigate("/404"); // Use absolute path
     }
   }, [folderId]);
 
+  // set the mode of the form or folder to add
   const handleSetAddFormOrFolder = (type) => {
     setMode(type);
     setShowCreateFormOrFolder(true);
   };
 
+  // set the mode of the form or folder and the item id to delete
   const handleSetDeleteFormOrFolder = (type, itemId) => {
     setItemId(itemId);
     setMode(type);
     setShowDeleteFormOrFolder(true);
   };
 
+  // arrow function to create a form or folder based on mode
   const handleCreateFormOrFolder = async (e) => {
     e.preventDefault();
 
@@ -68,6 +74,7 @@ const SpaceMain = () => {
       return;
     }
 
+    // form data to create a form or folder, parent id is the folder id or empty string. For, Folder parent id is empty always.
     const formData = {
       name,
       parentId: mode === "Form" && folderId ? folderId : "",
@@ -110,7 +117,7 @@ const SpaceMain = () => {
           disabled={!activeSpace?.canEdit || loading}
           className={
             "main__folder__button no-select " +
-            (activeSpace?.canEdit || !loading ? "" : "disabled")
+            (!activeSpace?.canEdit || loading ? "disabled" : "")
           }
         >
           <img
@@ -120,6 +127,7 @@ const SpaceMain = () => {
           />
           Create a folder
         </button>
+        {/* render the folder to route to the folder  */}
         {space.rootFolder
           .filter((folder) => folder.isFolder)
           .map((folder) => (
@@ -149,7 +157,7 @@ const SpaceMain = () => {
                 disabled={!activeSpace?.canEdit || loading}
                 className={
                   "main__folder__delete__button " +
-                  (activeSpace?.canEdit || !loading ? "" : "disabled")
+                  (!activeSpace?.canEdit || loading ? "disabled" : "")
                 }
               >
                 <img src={deleteIcon} alt="delete" />
@@ -157,6 +165,7 @@ const SpaceMain = () => {
             </div>
           ))}
       </div>
+      {/* render the form according to the route */}
       <SpaceForm
         loading={loading}
         handleAddFormOrFolder={handleSetAddFormOrFolder}
@@ -165,6 +174,7 @@ const SpaceMain = () => {
         spaceId={spaceId}
         canEdit={activeSpace?.canEdit}
       />
+
       {showCreateFormOrFolder && (
         <CreateFormOrFolder
           mode={mode}

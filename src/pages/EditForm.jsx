@@ -25,20 +25,19 @@ const EditForm = ({
   formData = { data: [] },
   setFormData,
 }) => {
-  // Helper to create a new field
   const createNewField = (type, isBubble) => {
-    // Get the highest number for the given type and isBubble field
+    // input label number to create a new field based on latest number to get unique label for each field
     const maxNumber = Math.max(
-      0, // to avoid NaN if there are no fields yet
+      0,
       ...formData.data
         .filter((field) => field.type === type && field.isBubble === isBubble)
         .map((field) => {
-          const matches = field.label.match(/(\d+)$/); // Match the number at the end of the label
+          const matches = field.label.match(/(\d+)$/);
           return matches ? parseInt(matches[1]) : 0;
         })
     );
 
-    const newLabelNumber = maxNumber > 0 ? maxNumber + 1 : 1; // If no fields, start from 1
+    const newLabelNumber = maxNumber > 0 ? maxNumber + 1 : 1;
 
     return {
       id: Date.now(),
@@ -53,7 +52,6 @@ const EditForm = ({
     };
   };
 
-  // Handle adding new inputs
   const handleInputClick = (type, isBubble) => {
     if (
       formData.data.length > 0 &&
@@ -79,7 +77,6 @@ const EditForm = ({
     }));
   };
 
-  // Handle field value change
   const handleBubbleChange = (id, value) => {
     setFormData((prev) => ({
       ...prev,
@@ -88,21 +85,19 @@ const EditForm = ({
       ),
     }));
 
-    // Remove error for the field if it's no longer empty
     setErrorFields((prev) => prev.filter((fieldId) => fieldId !== id));
   };
 
-  // Handle field removal
   const handleRemoveField = (id) => {
     setFormData((prev) => ({
       ...prev,
       data: prev.data.filter((field) => field.id !== id),
     }));
 
-    // Remove field from error tracking
     setErrorFields((prev) => prev.filter((fieldId) => fieldId !== id));
   };
 
+  // button icon for input
   const inputIcons = {
     text,
     email,
@@ -115,16 +110,25 @@ const EditForm = ({
 
   return (
     <div className="editform__container">
+      {/* show preloader while loading the form */}
       {loading && <PreLoader />}
       <div className="editform__sidebar">
         <div className="editform__sidebar__bubbles">
           <p>Bubbles</p>
           <div className="editform__sidebar__buttons">
-            <button onClick={() => handleInputClick("text", true)}>
+            <button
+              onClick={() => handleInputClick("text", true)}
+              className={!canEdit || loading ? "disabled" : ""}
+              disabled={!canEdit || loading}
+            >
               <img src={message} alt="message" />
               Text
             </button>
-            <button onClick={() => handleInputClick("image", true)}>
+            <button
+              className={!canEdit || loading ? "disabled" : ""}
+              disabled={!canEdit || loading}
+              onClick={() => handleInputClick("image", true)}
+            >
               <img src={image} alt="image" />
               Image
             </button>
@@ -143,7 +147,8 @@ const EditForm = ({
           <div className="editform__sidebar__buttons">
             {fieldInputs?.map((input) => (
               <button
-                disabled={!canEdit}
+                className={!canEdit || loading ? "disabled" : ""}
+                disabled={!canEdit || loading}
                 key={input.type}
                 onClick={() => handleInputClick(input.type, false)}
               >

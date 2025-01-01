@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import Form from "./../components/Form";
 import { resetError, updateUserDetails } from "../features/user/userSlice";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router";
 
 const Setting = () => {
   const { user } = useSelector((state) => state.user);

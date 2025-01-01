@@ -9,6 +9,7 @@ import { getSpaces } from "../features/space/spaceSlice";
 const ProtectedLayout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleLogout = useHandleLogout();
   const location = useLocation();
   const { spaceId } = useParams();
@@ -16,7 +17,7 @@ const ProtectedLayout = () => {
   const handleGetSpace = async () => {
     const response = await dispatch(getSpaces(spaceId));
     if (response.type === "space/getSpaces/rejected") {
-      navigate("/404");
+      navigate("/404"); //if not valid space id redirect to 404
     }
   };
 
@@ -28,6 +29,7 @@ const ProtectedLayout = () => {
       dispatch(getUserDetails())
         .unwrap()
         .then((data) => {
+          
           if (
             location.pathname === "/" ||
             location.pathname === "/login" ||
@@ -37,7 +39,7 @@ const ProtectedLayout = () => {
             navigate(data.data.spaces[0].space._id.toString());
           }
         })
-        .catch((error) => {
+        .catch(() => {
           handleLogout();
         });
     }
@@ -45,10 +47,9 @@ const ProtectedLayout = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      if (spaceId) {
-        handleGetSpace();
-      }
+
+    if (token && spaceId) {
+      handleGetSpace();
     }
   }, [spaceId]);
 
