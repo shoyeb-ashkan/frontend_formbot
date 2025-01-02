@@ -6,7 +6,7 @@
   padding: 1rem;
   width: 100%;
   margin-bottom: 70px;
-  color: var(--hover-color);
+  color: rgba(255, 255, 255, 0.2);
   max-width: 900px;
 }
 
@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  color:var(--text-color);
+  color:#fff;
   font-weight: 700;
   font-size: 18px;
 }
@@ -25,14 +25,14 @@
 }
 
 .footer__copyright {
-  color: var(--text-color);
+  color: #fff;
   line-height: 28px;
   margin-top: 20px;
   max-width: 150px;
 }
 
 .footer__copyright > a {
-  color:var(--hover-color);
+  color:rgba(255, 255, 255, 0.2);
   font-style: italic;
   font-weight: 500;
   text-decoration: wavy;
@@ -56,7 +56,7 @@
 .footer__link {
   display: flex;
   gap: 10px;
-  color: var(--text-color);
+  color: #fff;
 }
 .footer__link > p {
   text-decoration: underline !important;

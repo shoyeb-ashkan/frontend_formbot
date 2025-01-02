@@ -45,7 +45,7 @@
 .hero__description {
   font-size: 20px;
   line-height: 30px;
-  color:var(--hover-color);
+  color:#fff;
   font-weight: 500;
   max-width: 800px;
   text-align: center;

@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./styles/protectedLayout.css";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { getUserDetails } from "../features/user/userSlice";
 import { useHandleLogout } from "./../utils/utils";
 import { getSpaces } from "../features/space/spaceSlice";
+import PreLoader from "../components/PreLoader";
 
 const ProtectedLayout = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const ProtectedLayout = () => {
   const handleLogout = useHandleLogout();
   const location = useLocation();
   const { spaceId } = useParams();
+  const [loading, setLoading] = useState(true);
 
   const handleGetSpace = async () => {
     const response = await dispatch(getSpaces(spaceId));
@@ -26,10 +28,10 @@ const ProtectedLayout = () => {
     if (!token) {
       handleLogout();
     } else {
+      setLoading(true);
       dispatch(getUserDetails())
         .unwrap()
         .then((data) => {
-          
           if (
             location.pathname === "/" ||
             location.pathname === "/login" ||
@@ -41,6 +43,9 @@ const ProtectedLayout = () => {
         })
         .catch(() => {
           handleLogout();
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
   }, []);
@@ -53,6 +58,7 @@ const ProtectedLayout = () => {
     }
   }, [spaceId]);
 
+  if (loading) return <PreLoader />;
   return (
     <div className="protected-layout">
       <Outlet />
