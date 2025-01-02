@@ -86,37 +86,39 @@ const ShareSpace = ({ spaceId, setShowShare, ownerEmail }) => {
   };
 
   return (
-    <div className="share__space__container">
-      <div className="share__space__email">
-        <div className="share__space__email__header">
-          <p>Invite by Email</p>
-          <select
-            onChange={(e) => setAccessType(e.target.value)}
-            value={accessType}
-          >
-            <option value="view">View</option>
-            <option value="edit">Edit</option>
-          </select>
+    <div className="share__space">
+      <div className="share__space__container">
+        <div className="share__space__email">
+          <div className="share__space__email__header">
+            <p>Invite by Email</p>
+            <select
+              onChange={(e) => setAccessType(e.target.value)}
+              value={accessType}
+            >
+              <option value="view">View</option>
+              <option value="edit">Edit</option>
+            </select>
+          </div>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter email id"
+          />
+          <button onClick={(e) => handleSubmit(e)}>
+            {addEmailLoading ? <Loading /> : "Send Invite"}
+          </button>
         </div>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter email id"
-        />
-        <button onClick={(e) => handleSubmit(e)}>
-          {addEmailLoading ? <Loading /> : "Send Invite"}
-        </button>
-      </div>
-      <div className="share__space__link">
-        <p>Invite by link</p>
-        <button
-          disabled={copylinkLoading}
-          className={copylinkLoading ? "disabled" : ""}
-          onClick={(e) => handleCopyLink(e)}
-        >
-          {copylinkLoading ? <Loading /> : "Copy Link"}
-        </button>
+        <div className="share__space__link">
+          <p>Invite by link</p>
+          <button
+            disabled={copylinkLoading}
+            className={copylinkLoading ? "disabled" : ""}
+            onClick={(e) => handleCopyLink(e)}
+          >
+            {copylinkLoading ? <Loading /> : "Copy Link"}
+          </button>
+        </div>
       </div>
     </div>
   );

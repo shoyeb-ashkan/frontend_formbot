@@ -1,7 +1,10 @@
-.share__space__container {
+.share__space {
+  width: 100%;
   position: absolute;
   top: 100px;
-  left: 300px;
+}
+
+.share__space__container {
   width: 750px;
   background-color: var(--bg-secondary-color);
   height: fit-content;
