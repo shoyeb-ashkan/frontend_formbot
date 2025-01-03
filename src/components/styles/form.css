@@ -42,11 +42,11 @@
   font-size: 14px;
   line-height: 21px;
   font-weight: 500;
-  background-color:transparent;
+  background-color: transparent;
 }
 
 .input__container input::placeholder {
-  color:  #636364;
+  color: #636364;
 }
 
 .input__container input:focus {
@@ -97,6 +97,16 @@
   margin-top: 5px;
   max-width: 300px;
   min-height: 20px;
+}
+
+.input__field {
+  color: var(--text-color) !important;
+  background-color: var(--bg-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.input__label {
+  color: var(--text-color);
 }
 
 .input__error input {

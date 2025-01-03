@@ -11,6 +11,7 @@ const Form = ({
   onSubmit,
   errorMessage,
   buttonText,
+  applyTheme = false,
 }) => {
   const [showPassword, setShowPassword] = useState({});
   const { loading, error } = useSelector((state) => state.user);
@@ -37,11 +38,17 @@ const Form = ({
               `${formError[field.name] ? "input__error" : ""}`
             }
           >
-            <label htmlFor={field.name}>{field.name}</label>
+            <label
+              className={applyTheme ? "input__label" : ""}
+              htmlFor={field.name}
+            >
+              {field.name}
+            </label>
             <input
               id={field.name}
               name={field.name}
               value={field.value}
+              className={applyTheme ? "input__field" : ""}
               onChange={field.onChange}
               required={field.required}
               placeholder={field.placeholder}
@@ -53,8 +60,8 @@ const Form = ({
             />
             {field.type === "password" && (
               <span className="input__icon__passowrd">
-                {/* dont want user to use keyboard to show and hide password */}
                 <img
+                  title="Show/Hide"
                   onClick={() => togglePasswordVisibility(field.name)}
                   src={showPassword[field.name] ? eyeOff : eye}
                   alt="eye-icon"

@@ -218,6 +218,7 @@ const Setting = () => {
           formFields={formFields}
           onSubmit={handleSubmit}
           errorMessage={errorMessage}
+          applyTheme={true}
         />
       </div>
       <div className="setting__button">
